@@ -11,7 +11,7 @@ app.config(function ($routeProvider) {
             controllerAs: 'main'
         })
         .when('/notes/:id', {
-            templateUrl: 'angularApp/views/email.html',
+            templateUrl: 'angularApp/views/note.html',
             controller: 'noteController',
             controllerAs: 'main'
         })
@@ -23,15 +23,3 @@ app.config(function ($routeProvider) {
 /* CONTROLLERS */
 
 /* FACTORIES */
-app.factory('InboxFactory', function InboxFactory ($http) {
-   var exports = {};
-
-   exports.getMessages = function () {
-      return $http.get('json/notes.json')
-         .error(function (data) {
-            console.log('There was an error!', data);
-      });
-   };
-
-   return exports;
-});

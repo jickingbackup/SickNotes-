@@ -1,9 +1,8 @@
-<div class="row">
+<div class="row" ng-init="main.getNotes()">
     <ul>
-        <li>{{main.title}}</li>
-        <li>XXX</li>
-        <li>XXX</li>
-        <li>XXX</li>
-        <li>XXX</li>
+        <li ng-repeat="x in main.notes"><span ng-bind="x.title"></span></li>
     </ul>
+</div>
+<div>
+    <button ng-click="main.getNotes()">REFRESH</button>
 </div>
