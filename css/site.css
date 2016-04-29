@@ -1,0 +1,28 @@
+/* element settings*/
+
+
+
+/* utilities*/
+.bordered
+{
+    border: 1px solid black;
+}
+
+.colored-background
+{
+    background-color: #f3f3f3;
+}
+.set-min-height
+{
+    min-height: 400px;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 480px) {
+    .hide-xs
+    {
+        display: none;
+    }
+}
+
+
