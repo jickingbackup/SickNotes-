@@ -23,7 +23,7 @@ app.config(function ($routeProvider) {
         })
         .when('/notes/:id', {
             templateUrl: 'angularApp/views/noteview.html',
-            controller: 'noteListController as app'
+            controller: 'noteViewController as app'
             //resolve: resolveProjects
         })
         .otherwise({
@@ -36,6 +36,7 @@ app.controller('noteListController', function (NoteService) {
     var self = this;
     self.notes = {};
     self.note = {};
+    self.searchKeyword = "";
 
     self.getNotes = function () {
         NoteService.getNotes()
@@ -47,6 +48,8 @@ app.controller('noteListController', function (NoteService) {
         .error(function (data) {
             console.log('There was an error!', data);
         });
+        
+        self.searchKeyword = "";
     }
 
     self.getNoteById = function (id) {
@@ -59,12 +62,13 @@ app.controller('noteListController', function (NoteService) {
         });
     }
 });
-/*
-app.controller('noteListController', function (NoteService) {
-    var self = this;
-    this.note = {};
 
-    this.getNoteById = function (id) {
+
+app.controller('noteViewController', function (NoteService) {
+    var self = this;
+    self.note = {};
+
+    self.getNoteById = function (id) {
         NoteService.getNoteById()
         .success(function (jsonData, statusCode) {
             self.note = jsonData;
@@ -74,7 +78,7 @@ app.controller('noteListController', function (NoteService) {
         });
     }
 });
-*/
+
 app.controller('containerController', function () {
     // initialize the title property to an array for the view to use
     this.title = "SickNotes++";
