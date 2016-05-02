@@ -1,5 +1,7 @@
 /* element settings*/
-
+body{
+    padding-top: 50px;
+}
 
 
 /* utilities*/
@@ -25,4 +27,10 @@
     }
 }
 
+
+/**/
+.details-container
+{
+    margin-top: 40px;
+}
 

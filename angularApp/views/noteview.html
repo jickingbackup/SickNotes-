@@ -1,7 +1,79 @@
-<div class="row" >
-    <p>
-       <strong> ID </strong><span ng-bind="app.note.id"> </span><br>
-       <strong> TITLE </strong><span ng-bind="app.note.title"> </span><br>
-       <strong> content </strong><span ng-bind="app.note.content"> </span><br>
-    </p>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 details-container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"> Note Details </h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="api_token">Title</label>
+                    <input placeholder="" class="form-control" id="api_token" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="api_token">Content</label>
+                    <textarea class="form-control"></textarea>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 text-left">
+                            <button type="submit" class="btn btn-primary">SAVE</button>  
+                            <button type="submit" class="btn btn-danger">DELETE</button>                                                  
+                    </div>
+                    <div class="col-md-6 text-right">
+                            <a ng-href="#/notes" type="button" class="btn btn-default">BACK</a>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
 </div>
+
+
+<!-- 
+<p>
+<strong> ID </strong><span ng-bind="app.note.id"> </span><br>
+<strong> TITLE </strong><span ng-bind="app.note.title"> </span><br>
+<strong> content </strong><span ng-bind="app.note.content"> </span><br>
+</p>
+
+
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4 details-container">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title">
+    Note Details 
+</h3>
+</div>
+<div class="panel-body">
+<table class="table subscription-table">
+<tbody>
+    <tr>
+        <td>Plan</td>
+        <td>
+            <span class="label label-success">Basic</span>
+        </td>
+    </tr>
+    <tr>
+        <td>Multiple responses / request</td>
+        <td><span class="glyphicon glyphicon-remove" data-bindattr-513="513"></span></td>
+    </tr>
+    <tr>
+        <td>Price</td>
+        <td>$0.00 / month</td>
+    </tr>
+</tbody>
+</table>
+<br>
+<br>
+<small>*Collaborators can be any JsonStub member. They do not need to be premium.</small>
+</div>
+</div>
+</div>
+<div class="col-md-4"></div>
+</div>
+
+-->

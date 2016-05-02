@@ -1,10 +1,14 @@
 <div class="row" ng-init="app.getNotes()">
-<form>
-<label>filter:</label>    
-<input type="text" ng-model="app.searchKeyword">
-</form>
-    <ul>
-        <li ng-repeat="note in app.notes | filter :{title:app.searchKeyword}"><span ng-bind="note.title"></span> <a ng-href="#/notes/{{note.id}}">x</a></li>
-    </ul>
-    <button ng-click="app.getNotes()">REFRESH</button>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form>
+            <label>filter:</label>
+            <input type="text" ng-model="app.searchKeyword">
+        </form>
+        <ul>
+            <li ng-repeat="note in app.notes | filter :{title:app.searchKeyword}"><span ng-bind="note.title"></span> <a ng-href="#/notes/{{note.id}}">x</a></li>
+        </ul>
+        <button ng-click="app.getNotes()">REFRESH</button>
+    </div>
+    <div class="col-md-4"></div>
 </div>
