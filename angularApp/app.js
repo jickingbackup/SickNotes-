@@ -23,7 +23,7 @@ app.config(function ($routeProvider) {
         })
         .when('/notes/:id', {
             templateUrl: 'angularApp/views/noteview.html',
-            controller: 'noteViewController as app'
+            controller: 'noteViewController as controller'
             //resolve: resolveProjects
         })
         .otherwise({
@@ -39,44 +39,37 @@ app.controller('noteListController', function (NoteService) {
     self.searchKeyword = "";
 
     self.getNotes = function () {
-        NoteService.getNotes()
-        .success(function (jsonData, statusCode) {
-            //console.log('The request was successful!', statusCode, jsonData);
-            // Now add the Email messages to the controller's scope
-            self.notes = jsonData;
-        })
-        .error(function (data) {
-            console.log('There was an error!', data);
-        });
-        
-        self.searchKeyword = "";
-    }
+        NoteService.getNotes().then(function(response) {
+                //console.log('success',response);
+                self.notes = response.data;
+            }, function(error) {
+                console.log(error);
+            });
 
-    self.getNoteById = function (id) {
-        NoteService.getNoteById()
-        .success(function (jsonData, statusCode) {
-            self.note = jsonData;
-        })
-        .error(function (data) {
-            console.log('There was an error!', data);
-        });
+        self.searchKeyword = "";
     }
 });
 
 
-app.controller('noteViewController', function (NoteService) {
+app.controller('noteViewController', function (NoteService,$routeParams) {
     var self = this;
     self.note = {};
 
     self.getNoteById = function (id) {
-        NoteService.getNoteById()
-        .success(function (jsonData, statusCode) {
-            self.note = jsonData;
-        })
-        .error(function (data) {
-            console.log('There was an error!', data);
-        });
+        NoteService.getNoteById(id).then(function(response) {
+                //console.log('success',response);
+                self.note = response.data;
+            }, function(error) {
+                console.log(error);
+            });
     }
+    
+    self.ctor = function()
+    {
+        self.getNoteById($routeParams.id);
+    }
+    
+    self.ctor();
 });
 
 app.controller('containerController', function () {
@@ -85,41 +78,43 @@ app.controller('containerController', function () {
 });
 
 /* FACTORIES */
-app.factory('NoteFactory', function NoteFactory($http) {
-    var exports = {};
-
-    exports.getNotes = function () {
-        return $http.get('json/notes.json')
-            .error(function (data) {
-                console.log('There was an error!', data);
-            });
-    };
-
-    exports.getNote = function (id) {
-        return $http.get('json/note.json')
-            .error(function (data) {
-                console.log('There was an error!', data);
-            });
-    };
-
-    return exports; //function return object
-});
+// app.factory('NoteFactory', function NoteFactory($http) {
+//     var exports = {};
+//     exports.getNotes = function () {
+//         return $http.get('json/notes.json')
+//             .error(function (data) {
+//                 console.log('There was an error!', data);
+//             });
+//     };
+//     exports.getNote = function (id) {
+//         return $http.get('json/note.json')
+//             .error(function (data) {
+//                 console.log('There was an error!', data);
+//             });
+//     };
+//     return exports; //function return object
+// });
 
 /*SERVICES - PREFERED OVER FACTORY*/
 app.service('NoteService', function NoteService($http) {
     var self = this;
 
     this.getNotes = function () {
-        return $http.get('json/notes.json')
-            .error(function (data) {
-                console.log('There was an error!', data);
-            });
+        return $http.get('json/notes.json');
+        /*return $http.get('json/notes.json').then(function(response) {
+                console.log('success',response);
+                return response.data;
+            }, function(error) {
+                console.log(error);
+            });*/
     };
 
     this.getNoteById = function (id) {
-        return $http.get('json/note.json')
-            .error(function (data) {
-                console.log('There was an error!', data);
-            });
+        return $http.get('json/note.json');
     };
+
+
+    this.addNote = function (note) {
+        console.log('Note Added.');
+    }
 });
